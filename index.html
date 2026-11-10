@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jacobo Cánovas García · Proyectos</title>
+<meta name="description" content="Proyectos de Jacobo Cánovas García: Radio Matemática, SSS Browser y trabajos en Rust.">
+<style>
+:root{--bg:#f6f5f1;--card:#fff;--ink:#1c1c1a;--mute:#5c5a54;--line:#dedad0;--acc:#b7410e;--code:#f0ede4}
+@media (prefers-color-scheme:dark){:root{--bg:#141413;--card:#1d1d1b;--ink:#ecebe6;--mute:#a9a69c;--line:#34332f;--acc:#f0844f;--code:#262522}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Segoe UI",system-ui,-apple-system,"DejaVu Sans",sans-serif}
+main{max-width:920px;margin:0 auto;padding:48px 18px 80px}
+header{margin-bottom:36px}
+h1{font-size:40px;line-height:1.15;margin:0 0 10px}
+.lema{font-size:20px;color:var(--mute);margin:0 0 16px;max-width:46em}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0 0 16px;list-style:none}
+.chips li{border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:14px;color:var(--mute)}
+.boton{display:inline-block;border:1px solid var(--acc);color:var(--acc);border-radius:8px;padding:6px 14px;text-decoration:none;font-weight:600}
+h2{font-size:24px;margin:44px 0 14px;padding-bottom:6px;border-bottom:2px solid var(--line)}
+.proy{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:14px 0}
+.proy h3{margin:0 0 4px;font-size:21px}
+.meta{font-size:14px;color:var(--acc);margin:0 0 10px;font-weight:600}
+.proy p{margin:6px 0}
+.proy ul{margin:8px 0 6px 20px;padding:0}
+.enlaces{margin-top:12px;font-size:15px}
+.enlaces a{margin-right:16px}
+.formula{font-family:"DejaVu Serif",Georgia,serif;background:var(--code);border-radius:8px;padding:8px 12px;margin:10px 0;overflow-x:auto;line-height:1.9}
+code{font-family:"DejaVu Sans Mono",ui-monospace,monospace;font-size:.88em;background:var(--code);padding:1px 5px;border-radius:4px}
+.otros{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.otro{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.otro b{display:block;font-size:17px;margin-bottom:4px}
+.otro span{font-size:15px;color:var(--mute)}
+.nota{font-size:15px;color:var(--mute)}
+footer{margin-top:56px;color:var(--mute);font-size:14px;border-top:1px solid var(--line);padding-top:16px}
+a{color:var(--acc)}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+<h1>Jacobo Cánovas García</h1>
+<p class="lema">Escribo programas que aplican fórmulas matemáticas propias a señales reales: audio en directo y resultados de búsqueda. Programo en Python y Rust, en Linux.</p>
+<ul class="chips"><li>Python</li><li>Procesado de señal (DSP)</li><li>NumPy / SciPy</li><li>Modelos de lenguaje</li><li>Rust</li><li>Linux · paquetes Debian</li></ul>
+<a class="boton" href="https://github.com/lobo-jacob-1224">Mi GitHub</a>
+</header>
+
+<h2>Proyectos publicados</h2>
+
+<article class="proy">
+<h3>Radio Matemática 2.0</h3>
+<p class="meta">Python · NumPy · SciPy · Tkinter · ffmpeg · SQLite · paquete Debian</p>
+<p>Una radio por Internet que procesa la emisora en tiempo real, mientras suena. Coloca 20 filtros en las frecuencias que salen de los 20 primeros ceros de la función zeta de Riemann. Las ganancias de esos filtros siguen a la música: suben cuando hay energía en su banda y bajan despacio cuando desaparece.</p>
+<div class="formula">f<sub>n</sub> = 50 Hz · (16000 / 50)<sup>(γ<sub>n</sub> − γ<sub>1</sub>) / (γ<sub>20</sub> − γ<sub>1</sub>)</sup> &nbsp;&nbsp; M(f,t) = 0,6 + Σ G<sub>n</sub>(t) · e<sup>−½((f − f<sub>n</sub>)/12)²</sup></div>
+<ul>
+<li>Procesado por bloques con transformada de Fourier (STFT), ventana de Hann y reconstrucción por solapamiento y suma.</li>
+<li>Seguidores de envolvente por banda (ataque de unos 0,9 s, caída de unos 23 s) y saturación suave <code>tanh</code> con el volumen compensado.</li>
+<li>Botón MOTOR SÍ/NO para comparar con la emisora original y panel de los 20 modos en directo.</li>
+<li>Buscador de emisoras (radio-browser.info), catálogo de canciones en SQLite y diario en CSV.</li>
+</ul>
+<p class="enlaces"><a href="https://github.com/lobo-jacob-1224/radio-riemann-buscador-sss/tree/main/radio-matematica">Código y explicación</a><a href="https://github.com/lobo-jacob-1224/radio-matematica">Versión 1.0</a></p>
+</article>
+
+<article class="proy">
+<h3>SSS Browser 2.0</h3>
+<p class="meta">Python · sentence-transformers (MiniLM) · Flask · Qt · systemd · paquete Debian</p>
+<p>Un buscador web con ventana propia. Mide con un modelo de lenguaje cuánto se parece cada resultado a lo buscado, transforma esa medida con mi fórmula SSS y ordena los resultados con ella.</p>
+<div class="formula">SSS(α) = máx(0, α · [ J<sub>1</sub>(αρ) · e<sup>−1,9041</sup> + 1/√(1 − 2ασ) ] · | (k/2)(J<sub>0</sub>(kt) − J<sub>2</sub>(kt)) | ), &nbsp; t = 1 − α, &nbsp; k = 1,832827</div>
+<ul>
+<li>Búsqueda con <code>ddgs</code> y, si devuelve pocos resultados, también con Bing y Brave.</li>
+<li>Parecido semántico con MiniLM multilingüe y, opcionalmente, combinado con Gemini Nano en Chrome.</li>
+<li>Cálculo del punto de sincronía, el valor en que la fórmula devuelve lo mismo que recibe, con el método de Brent.</li>
+<li>Servidor local en Flask, ventana en Qt y arranque bajo demanda con un socket de systemd.</li>
+</ul>
+<p class="enlaces"><a href="https://github.com/lobo-jacob-1224/radio-riemann-buscador-sss/tree/main/sss-browser">Código y explicación</a></p>
+</article>
+
+<p class="nota">Los dos programas están en el repositorio <a href="https://github.com/lobo-jacob-1224/radio-riemann-buscador-sss">radio-riemann-buscador-sss</a>, con licencia GNU GPL v3.0, y la matemática explicada paso a paso en sus README.</p>
+
+<h2>Otros trabajos (todavía sin publicar)</h2>
+<div class="otros">
+<div class="otro"><b>Plugin de Rust para Geany</b><span>Escrito en C sobre la API de plugins de Geany 2.1: Cargo desde el editor, errores de <code>rustc</code> señalados en el código y acceso a ensamblador, MIR y el código de <code>std</code>. Empaquetado en .deb.</span></div>
+<div class="otro"><b>Rust para Windows desde Linux</b><span>Compilación cruzada a <code>x86_64-pc-windows-gnu</code> y una DLL en Rust que se coloca delante de <code>advapi32.dll</code> en Wine para observar o cambiar llamadas al sistema.</span></div>
+<div class="otro"><b>Libros sobre rustc</b><span><i>Las tres columnas de rustc</i> (parser, borrow checker y MIR), <i>El puntero: una biografía</i> y un cuaderno de 755 compilaciones con rustc.</span></div>
+<div class="otro"><b>The Unstable Book en español</b><span>Traducción de la documentación de las <i>features</i> inestables de Rust: 1.074 páginas, con el código original intacto.</span></div>
+</div>
+
+<footer>Jacobo Cánovas García · <a href="https://github.com/lobo-jacob-1224">github.com/lobo-jacob-1224</a></footer>
+
+</main>
+</body>
+</html>
