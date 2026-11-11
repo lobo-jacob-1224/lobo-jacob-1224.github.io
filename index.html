@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="es">
 <head>
@@ -7,53 +6,206 @@
 <title>Jacobo Cánovas García · Proyectos</title>
 <meta name="description" content="Proyectos de Jacobo Cánovas García: Radio Matemática, SSS Browser y trabajos en Rust.">
 <style>
-:root{--bg:#f6f5f1;--card:#fff;--ink:#1c1c1a;--mute:#5c5a54;--line:#dedad0;--acc:#b7410e;--code:#f0ede4}
-@media (prefers-color-scheme:dark){:root{--bg:#141413;--card:#1d1d1b;--ink:#ecebe6;--mute:#a9a69c;--line:#34332f;--acc:#f0844f;--code:#262522}}
+:root{
+  color-scheme:light;
+  --bg:#eef2f4;--bg2:#e1e9ed;--card:#f9fbfc;--ink:#162b3a;--mute:#4d6574;--line:#c8d5dc;
+  --acc:#b74738;--acc2:#00697f;--code:#e7edf0;--glow:rgba(183,71,56,.14);--shadow:0 18px 44px rgba(20,43,58,.09);
+  --grid:rgba(8,126,154,.075);--nav:rgba(238,242,244,.9)
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;
+  --bg:#091923;--bg2:#102432;--card:#132b3a;--ink:#f0eee4;--mute:#a9bdc7;--line:#294454;
+  --acc:#ff826d;--acc2:#67d3e2;--code:#0d202c;--glow:rgba(255,130,109,.17);--shadow:0 22px 54px rgba(0,0,0,.24);
+  --grid:rgba(103,211,226,.07);--nav:rgba(9,25,35,.9)
+}}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#091923;--bg2:#102432;--card:#132b3a;--ink:#f0eee4;--mute:#a9bdc7;--line:#294454;
+  --acc:#ff826d;--acc2:#67d3e2;--code:#0d202c;--glow:rgba(255,130,109,.17);--shadow:0 22px 54px rgba(0,0,0,.24);
+  --grid:rgba(103,211,226,.07);--nav:rgba(9,25,35,.9)
+}
+:root[data-theme="light"]{color-scheme:light}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Segoe UI",system-ui,-apple-system,"DejaVu Sans",sans-serif}
-main{max-width:920px;margin:0 auto;padding:48px 18px 80px}
-header{margin-bottom:36px}
-h1{font-size:40px;line-height:1.15;margin:0 0 10px}
-.lema{font-size:20px;color:var(--mute);margin:0 0 16px;max-width:46em}
-.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0 0 16px;list-style:none}
-.chips li{border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:14px;color:var(--mute)}
-.boton{display:inline-block;border:1px solid var(--acc);color:var(--acc);border-radius:8px;padding:6px 14px;text-decoration:none;font-weight:600}
-h2{font-size:24px;margin:44px 0 14px;padding-bottom:6px;border-bottom:2px solid var(--line)}
-.proy{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:14px 0}
-.proy h3{margin:0 0 4px;font-size:21px}
-.meta{font-size:14px;color:var(--acc);margin:0 0 10px;font-weight:600}
-.proy p{margin:6px 0}
-.proy ul{margin:8px 0 6px 20px;padding:0}
-.enlaces{margin-top:12px;font-size:15px}
-.enlaces a{margin-right:16px}
-.formula{font-family:"DejaVu Serif",Georgia,serif;background:var(--code);border-radius:8px;padding:8px 12px;margin:10px 0;overflow-x:auto;line-height:1.9}
-code{font-family:"DejaVu Sans Mono",ui-monospace,monospace;font-size:.88em;background:var(--code);padding:1px 5px;border-radius:4px}
-.otros{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
-.otro{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
-.otro b{display:block;font-size:17px;margin-bottom:4px}
-.otro span{font-size:15px;color:var(--mute)}
-.nota{font-size:15px;color:var(--mute)}
-footer{margin-top:56px;color:var(--mute);font-size:14px;border-top:1px solid var(--line);padding-top:16px}
-a{color:var(--acc)}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{
+  margin:0;background-color:var(--bg);color:var(--ink);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:44px 44px;font:16px/1.68 system-ui,-apple-system,"Segoe UI",sans-serif;transition:background-color .35s,color .35s
+}
+a{color:var(--acc);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--acc2)}
+code,.lectura,.dato-valor,.controles output{font-family:"DejaVu Sans Mono",ui-monospace,SFMono-Regular,Consolas,monospace;font-variant-numeric:tabular-nums}
+code{font-size:.88em;background:var(--code);padding:2px 6px;border-radius:4px}
+::selection{background:var(--acc);color:var(--bg)}
+
+/* barra superior */
+nav{position:sticky;top:0;z-index:10;background:var(--nav);border-bottom:1px solid var(--line)}
+nav .in{max-width:1120px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;gap:8px;overflow-x:auto}
+nav a{color:var(--mute);text-decoration:none;font-size:14px;font-weight:650;letter-spacing:.025em;padding:7px 10px;border-radius:5px;white-space:nowrap;transition:color .2s,background .2s}
+nav a:hover,nav a.activo{color:var(--acc);background:var(--glow)}
+nav .marca{font-weight:780;color:var(--ink);margin-right:auto;letter-spacing:-.02em}
+#tema{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:5px;width:40px;height:40px;cursor:pointer;font-size:18px;flex:none}
+#barra{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2))}
+
+main{max-width:1120px;margin:0 auto;padding:0 22px 88px}
+
+/* portada */
+header.portada{display:grid;grid-template-columns:1.04fr .96fr;gap:48px;align-items:center;padding:80px 0 52px}
+h1{font-size:clamp(38px,6.6vw,72px);line-height:.99;letter-spacing:-.065em;margin:0 0 24px;max-width:10ch;color:var(--ink)}
+.lema{font-size:clamp(17px,2vw,20px);color:var(--mute);margin:0 0 24px;max-width:38em}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0 0 26px;list-style:none}
+.chips li{border:1px solid var(--line);border-radius:4px;padding:4px 10px;font-size:12px;letter-spacing:.025em;color:var(--mute);background:var(--card)}
+.boton{display:inline-flex;align-items:center;border:1px solid var(--acc);border-radius:4px;padding:9px 16px;text-decoration:none;color:var(--acc);font-weight:700;letter-spacing:.02em;transition:background .2s,color .2s,transform .2s}
+.boton:hover{background:var(--acc);color:var(--bg);transform:translateY(-2px)}
+.figura{position:relative;background:var(--card);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);overflow:hidden}
+.figura::before{content:"01 / ZETA · RECTA CRÍTICA";display:block;padding:11px 15px;border-bottom:1px solid var(--line);font:11px/1.3 "DejaVu Sans Mono",ui-monospace,monospace;letter-spacing:.08em;color:var(--acc2)}
+.figura canvas{display:block;width:100%;height:320px}
+.pie{font-size:12px;color:var(--mute);padding:10px 14px;border-top:1px solid var(--line);line-height:1.55}
+#info_cero{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12px;padding:5px 8px;border-radius:3px;opacity:0;transition:opacity .15s;white-space:nowrap}
+
+h2{font-size:clamp(23px,3vw,30px);letter-spacing:-.035em;margin:68px 0 20px;padding:0 0 10px;border-bottom:1px solid var(--line);position:relative}
+h2::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:64px;background:linear-gradient(90deg,var(--acc),var(--acc2))}
+
+.proy{position:relative;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:clamp(20px,3.8vw,34px);margin:20px 0;box-shadow:var(--shadow);transition:border-color .25s,transform .25s}
+.proy::before{position:absolute;top:0;left:0;bottom:0;width:3px;content:"";background:linear-gradient(var(--acc),var(--acc2));opacity:.8}
+.proy:hover{border-color:var(--acc2)}
+.proy h3{margin:0 0 4px;font-size:clamp(21px,3vw,27px);letter-spacing:-.035em}
+.meta{font-size:12px;color:var(--acc2);margin:0 0 18px;font-weight:700;letter-spacing:.04em}
+.proy p{margin:8px 0}
+.proy ul{margin:14px 0 8px 20px;padding:0}
+.proy li{padding-left:4px;margin:5px 0}
+.enlaces{margin-top:18px!important;font-size:14px}
+.enlaces a{margin-right:18px;font-weight:650}
+.formula{font-family:"DejaVu Serif",Georgia,serif;background:var(--code);border-left:2px solid var(--acc2);padding:13px 16px;margin:18px 0;overflow-x:auto;line-height:1.9;color:var(--ink)}
+
+.panel{background:var(--bg2);border:1px solid var(--line);border-radius:6px;margin:20px 0;overflow:hidden}
+.panel canvas{display:block;width:100%;height:260px;cursor:crosshair}
+.sim-label{padding:9px 14px;background:var(--code);border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.045em;color:var(--mute)}
+.sim-label strong{color:var(--acc);letter-spacing:.1em;margin-right:8px}
+.control-grid{display:grid;grid-template-columns:repeat(2,minmax(210px,1fr));gap:15px 24px;align-items:center;padding:16px;border-top:1px solid var(--line)}
+.slider-control{display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:center;font-size:13px;font-weight:650;color:var(--ink)}
+.slider-control input[type=range]{grid-column:1/-1;width:100%;margin:1px 0;accent-color:var(--acc)}
+.controles output{font-size:12px;font-weight:600;color:var(--acc2);white-space:nowrap}
+.lectura{font-size:12px;color:var(--mute);line-height:1.65}
+.lectura b{color:var(--acc);font-weight:700}
+.control-grid > .lectura{grid-column:1/-1;border-top:1px solid var(--line);padding-top:12px}
+.controles button{border:1px solid var(--acc);background:transparent;color:var(--acc);border-radius:4px;padding:7px 14px;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.controles button[aria-pressed="true"]{background:var(--acc);color:var(--bg)}
+.resultados{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border-top:1px solid var(--line)}
+.control-grid > .resultados{grid-column:1/-1}
+.resultado{background:var(--card);padding:11px 14px;min-width:0}
+.resultado small{display:block;color:var(--mute);font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.resultado output{display:block;color:var(--ink);font:600 13px/1.5 "DejaVu Sans Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.resultado output.acento{color:var(--acc)}
+.nota{font-size:14px;color:var(--mute)}
+
+/* repositorios en directo */
+.repos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px}
+.repo{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:17px;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:7px;transition:transform .2s,border-color .2s,box-shadow .2s}
+.repo:hover{transform:translateY(-3px);border-color:var(--acc2);box-shadow:var(--shadow)}
+.repo b{font-size:15px;color:var(--acc2);word-break:break-word}
+.repo span{font-size:13px;color:var(--mute)}
+.repo .datos{display:flex;gap:14px;flex-wrap:wrap;margin-top:auto;font-size:12px}
+.punto{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.esqueleto{height:118px;border-radius:6px;background:linear-gradient(90deg,var(--card) 25%,var(--bg2) 50%,var(--card) 75%);background-size:200% 100%;animation:carga 1.3s linear infinite;border:1px solid var(--line)}
+@keyframes carga{from{background-position:200% 0}to{background-position:-200% 0}}
+#estado_github{font-size:13px;color:var(--mute);margin:-8px 0 14px}
+
+.otros{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px}
+.otro{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:18px;transition:border-color .2s}
+.otro:hover{border-color:var(--acc2)}
+.otro b{display:block;font-size:15px;margin-bottom:5px}
+.otro span{font-size:13px;color:var(--mute)}
+.cifra{font-size:28px!important;font-weight:750;color:var(--acc2)!important;display:block;line-height:1.2;margin:7px 0 3px;font-variant-numeric:tabular-nums}
+
+footer{margin-top:68px;color:var(--mute);font-size:13px;border-top:1px solid var(--line);padding-top:17px}
+
+/* aparición al hacer scroll */
+.js .aparece{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.js .aparece.visto{opacity:1;transform:none}
+
+:focus-visible{outline:3px solid var(--acc2);outline-offset:3px}
+@media (max-width:760px){
+  header.portada{grid-template-columns:1fr;gap:28px;padding:48px 0 30px}
+  h1{max-width:12ch}
+  .figura canvas{height:250px}
+  .panel canvas{height:230px}
+  nav .marca{display:none}
+  nav .in{gap:2px;justify-content:space-between;padding-inline:12px}
+  nav a{font-size:13px;padding:7px 6px}
+  main{padding-inline:16px}
+  .control-grid{grid-template-columns:1fr;gap:12px}
+  .control-grid > .lectura{grid-column:auto}
+}
+@media (max-width:420px){
+  .resultados{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .proy{padding:21px 17px}
+  .formula{font-size:14px;padding-inline:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js .aparece{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
+
+<nav>
+  <div class="in">
+    <a class="marca" href="#inicio">J. Cánovas</a>
+    <a href="#radio">Radio</a>
+    <a href="#sss">SSS</a>
+    <a href="#github">GitHub</a>
+    <a href="#otros">Otros</a>
+    <button id="tema" type="button" title="Cambiar tema claro / oscuro" aria-label="Cambiar tema claro / oscuro">◐</button>
+  </div>
+  <div id="barra"></div>
+</nav>
+
 <main>
 
-<header>
-<h1>Jacobo Cánovas García</h1>
-<p class="lema">Escribo programas que aplican fórmulas matemáticas propias a señales reales: audio en directo y resultados de búsqueda. Programo en Python y Rust, en Linux.</p>
-<ul class="chips"><li>Python</li><li>Procesado de señal (DSP)</li><li>NumPy / SciPy</li><li>Modelos de lenguaje</li><li>Rust</li><li>Linux · paquetes Debian</li></ul>
-<a class="boton" href="https://github.com/lobo-jacob-1224">Mi GitHub</a>
+<header class="portada" id="inicio">
+  <div>
+    <h1>Jacobo Cánovas García</h1>
+    <p class="lema">Escribo programas que aplican fórmulas matemáticas propias a señales reales: audio en directo y resultados de búsqueda. Programo en Python y Rust, en Linux.</p>
+    <ul class="chips"><li>Python</li><li>Procesado de señal (DSP)</li><li>NumPy / SciPy</li><li>Modelos de lenguaje</li><li>Rust</li><li>Linux · paquetes Debian</li></ul>
+    <a class="boton" href="https://github.com/lobo-jacob-1224">Mi GitHub</a>
+  </div>
+  <div class="figura">
+    <canvas id="lienzo_ceros" aria-label="Los 20 primeros ceros de la función zeta de Riemann sobre la recta crítica"></canvas>
+    <div id="info_cero"></div>
+    <div class="pie">Los 20 primeros ceros de ζ(s) en la recta crítica: ρ<sub>n</sub> = ½ + i·γ<sub>n</sub>. Pasa el ratón por encima.</div>
+  </div>
 </header>
 
-<h2>Proyectos publicados</h2>
+<h2 class="aparece">Proyectos publicados</h2>
 
-<article class="proy">
+<article class="proy aparece" id="radio">
 <h3>Radio Matemática 2.0</h3>
 <p class="meta">Python · NumPy · SciPy · Tkinter · ffmpeg · SQLite · paquete Debian</p>
 <p>Una radio por Internet que procesa la emisora en tiempo real, mientras suena. Coloca 20 filtros en las frecuencias que salen de los 20 primeros ceros de la función zeta de Riemann. Las ganancias de esos filtros siguen a la música: suben cuando hay energía en su banda y bajan despacio cuando desaparece.</p>
 <div class="formula">f<sub>n</sub> = 50 Hz · (16000 / 50)<sup>(γ<sub>n</sub> − γ<sub>1</sub>) / (γ<sub>20</sub> − γ<sub>1</sub>)</sup> &nbsp;&nbsp; M(f,t) = 0,6 + Σ G<sub>n</sub>(t) · e<sup>−½((f − f<sub>n</sub>)/12)²</sup></div>
+<div class="panel">
+  <div class="sim-label"><strong>SIMULACIÓN</strong> Energía de prueba aleatoria; no se reproduce ni se analiza audio real.</div>
+  <canvas id="lienzo_radio" aria-label="Máscara de Riemann animada: los 20 modos sobre el eje de frecuencias"></canvas>
+  <div class="control-grid controles" aria-label="Controles de la simulación de radio">
+    <label class="slider-control" for="n_radio">Modo para f<sub>n</sub><output id="n_radio_val" for="n_radio">n = 1</output>
+      <input id="n_radio" type="range" min="1" max="20" step="1" value="1" aria-label="Modo n para calcular su frecuencia">
+    </label>
+    <label class="slider-control" for="f_radio">Frecuencia f (escala logarítmica)<output id="f_radio_val" for="f_radio">— Hz</output>
+      <input id="f_radio" type="range" min="0" max="1000" step="1" value="500" aria-label="Frecuencia para evaluar la máscara simulada">
+    </label>
+    <div class="resultados" aria-label="Resultados calculados de la fórmula de radio" aria-live="polite">
+      <div class="resultado"><small>Modo n</small><output id="radio_n_result">1</output></div>
+      <div class="resultado"><small>Frecuencia f<sub>n</sub></small><output id="radio_fn_result">— Hz</output></div>
+      <div class="resultado"><small>Máscara M(f,t)</small><output id="radio_m_result" class="acento">—</output></div>
+    </div>
+    <button id="pausa_radio" type="button" aria-pressed="false">Pausa</button>
+    <span class="lectura" id="lectura_radio">—</span>
+    <span class="lectura" id="lectura_radio_seleccion" aria-live="polite">—</span>
+  </div>
+  <div class="pie">Simulación en el navegador: la energía de cada banda es una señal de prueba aleatoria, no audio de una emisora. Las 20 frecuencias, el objetivo T<sub>n</sub> = clip(2E<sub>n</sub>, 0, 1,5), el ataque (c = 0,05) y la caída (c = 0,002) cada 46 ms son los del motor.</div>
+</div>
 <ul>
 <li>Procesado por bloques con transformada de Fourier (STFT), ventana de Hann y reconstrucción por solapamiento y suma.</li>
 <li>Seguidores de envolvente por banda (ataque de unos 0,9 s, caída de unos 23 s) y saturación suave <code>tanh</code> con el volumen compensado.</li>
@@ -63,11 +215,32 @@ a{color:var(--acc)}
 <p class="enlaces"><a href="https://github.com/lobo-jacob-1224/radio-riemann-buscador-sss/tree/main/radio-matematica">Código y explicación</a><a href="https://github.com/lobo-jacob-1224/radio-matematica">Versión 1.0</a></p>
 </article>
 
-<article class="proy">
+<article class="proy aparece" id="sss">
 <h3>SSS Browser 2.0</h3>
 <p class="meta">Python · sentence-transformers (MiniLM) · Flask · Qt · systemd · paquete Debian</p>
 <p>Un buscador web con ventana propia. Mide con un modelo de lenguaje cuánto se parece cada resultado a lo buscado, transforma esa medida con mi fórmula SSS y ordena los resultados con ella.</p>
 <div class="formula">SSS(α) = máx(0, α · [ J<sub>1</sub>(αρ) · e<sup>−1,9041</sup> + 1/√(1 − 2ασ) ] · | (k/2)(J<sub>0</sub>(kt) − J<sub>2</sub>(kt)) | ), &nbsp; t = 1 − α, &nbsp; k = 1,832827</div>
+<div class="panel">
+  <canvas id="lienzo_sss" aria-label="Gráfica interactiva de la fórmula SSS"></canvas>
+  <div class="control-grid controles" aria-label="Parámetros y resultados de la fórmula SSS">
+    <label class="slider-control" for="n_sss">Resultados n <output id="n_val" for="n_sss">20</output>
+      <input id="n_sss" type="range" min="1" max="20" step="1" value="20" aria-label="Número de resultados n">
+    </label>
+    <label class="slider-control" for="s_sss">σ <output id="s_val" for="s_sss">0,40</output>
+      <input id="s_sss" type="range" min="0.05" max="0.9" step="0.01" value="0.4" aria-label="Parámetro sigma">
+    </label>
+    <label class="slider-control" for="alpha_sss">Evaluar en α <output id="alpha_val" for="alpha_sss">0,500</output>
+      <input id="alpha_sss" type="range" min="0" max="1" step="0.001" value="0.5" aria-label="Valor alfa para evaluar la fórmula SSS">
+    </label>
+    <div class="resultados" aria-label="Resultados calculados de la fórmula SSS" aria-live="polite">
+      <div class="resultado"><small>SSS(α)</small><output id="sss_alpha_result">—</output></div>
+      <div class="resultado"><small>SSS(α) − α</small><output id="sss_delta_result">—</output></div>
+      <div class="resultado"><small>Punto de sincronía α*</small><output id="sss_sync_result" class="acento">—</output></div>
+    </div>
+    <span class="lectura" id="lectura_sss">—</span>
+  </div>
+  <div class="pie">Calculada aquí mismo con la fórmula del README: ρ = 10·n/20, S<sub>2</sub> = 100 pasado el horizonte α<sub>h</sub> = 1/(2σ), y α* por el primer cambio de signo de SSS(α) − α en 400 puntos, afinado hasta 10<sup>−12</sup>. Pasa el ratón por la gráfica para leer valores.</div>
+</div>
 <ul>
 <li>Búsqueda con <code>ddgs</code> y, si devuelve pocos resultados, también con Bing y Brave.</li>
 <li>Parecido semántico con MiniLM multilingüe y, opcionalmente, combinado con Gemini Nano en Chrome.</li>
@@ -77,18 +250,385 @@ a{color:var(--acc)}
 <p class="enlaces"><a href="https://github.com/lobo-jacob-1224/radio-riemann-buscador-sss/tree/main/sss-browser">Código y explicación</a></p>
 </article>
 
-<p class="nota">Los dos programas están en el repositorio <a href="https://github.com/lobo-jacob-1224/radio-riemann-buscador-sss">radio-riemann-buscador-sss</a>, con licencia GNU GPL v3.0, y la matemática explicada paso a paso en sus README.</p>
+<p class="nota aparece">Los dos programas están en el repositorio <a href="https://github.com/lobo-jacob-1224/radio-riemann-buscador-sss">radio-riemann-buscador-sss</a>, con licencia GNU GPL v3.0, y la matemática explicada paso a paso en sus README.</p>
 
-<h2>Otros trabajos (todavía sin publicar)</h2>
-<div class="otros">
-<div class="otro"><b>Plugin de Rust para Geany</b><span>Escrito en C sobre la API de plugins de Geany 2.1: Cargo desde el editor, errores de <code>rustc</code> señalados en el código y acceso a ensamblador, MIR y el código de <code>std</code>. Empaquetado en .deb.</span></div>
-<div class="otro"><b>Rust para Windows desde Linux</b><span>Compilación cruzada a <code>x86_64-pc-windows-gnu</code> y una DLL en Rust que se coloca delante de <code>advapi32.dll</code> en Wine para observar o cambiar llamadas al sistema.</span></div>
-<div class="otro"><b>Libros sobre rustc</b><span><i>Las tres columnas de rustc</i> (parser, borrow checker y MIR), <i>El puntero: una biografía</i> y un cuaderno de 755 compilaciones con rustc.</span></div>
-<div class="otro"><b>The Unstable Book en español</b><span>Traducción de la documentación de las <i>features</i> inestables de Rust: 1.074 páginas, con el código original intacto.</span></div>
+<h2 class="aparece" id="github">Mis repositorios, en directo desde GitHub</h2>
+<p id="estado_github">Cargando desde la API de GitHub…</p>
+<div class="repos" id="repos">
+  <div class="esqueleto"></div><div class="esqueleto"></div><div class="esqueleto"></div>
 </div>
 
-<footer>Jacobo Cánovas García · <a href="https://github.com/lobo-jacob-1224">github.com/lobo-jacob-1224</a></footer>
+<h2 class="aparece" id="otros">Otros trabajos (todavía sin publicar)</h2>
+<div class="otros">
+<div class="otro aparece"><b>Plugin de Rust para Geany</b><span>Escrito en C sobre la API de plugins de Geany 2.1: Cargo desde el editor, errores de <code>rustc</code> señalados en el código y acceso a ensamblador, MIR y el código de <code>std</code>. Empaquetado en .deb.</span></div>
+<div class="otro aparece"><b>Rust para Windows desde Linux</b><span>Compilación cruzada a <code>x86_64-pc-windows-gnu</code> y una DLL en Rust que se coloca delante de <code>advapi32.dll</code> en Wine para observar o cambiar llamadas al sistema.</span></div>
+<div class="otro aparece"><b>Libros sobre rustc</b><span class="cifra" data-cifra="755">755</span><span><i>Las tres columnas de rustc</i> (parser, borrow checker y MIR), <i>El puntero: una biografía</i> y un cuaderno de 755 compilaciones con rustc.</span></div>
+<div class="otro aparece"><b>The Unstable Book en español</b><span class="cifra" data-cifra="1074">1.074</span><span>Traducción de la documentación de las <i>features</i> inestables de Rust: 1.074 páginas, con el código original intacto.</span></div>
+</div>
+
+<footer>Jacobo Cánovas García · <a href="https://github.com/lobo-jacob-1224">github.com/lobo-jacob-1224</a> · <span id="pie_github"></span></footer>
 
 </main>
+
+<script>
+"use strict";
+document.documentElement.classList.add("js");
+const USER = "lobo-jacob-1224";
+const MOTION = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// First 20 imaginary parts of the non-trivial zeta zeros, same table as the radio engine.
+const GAMMA = [14.13472514,21.02203964,25.01085758,30.42487612,32.93506159,37.58617816,40.91871901,43.32707328,48.00515088,49.77383248,
+               52.97032148,56.44624770,59.34704400,60.83177852,65.11254405,67.07981053,69.54640171,72.06715767,75.70469070,77.14484007];
+const F_MIN = 50, F_MAX = 16000;
+const FREQ = GAMMA.map(g => F_MIN * Math.pow(F_MAX / F_MIN, (g - GAMMA[0]) / (GAMMA[19] - GAMMA[0])));
+
+const css = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+const fmt = (x, d) => x.toLocaleString("es-ES", {minimumFractionDigits: d, maximumFractionDigits: d});
+
+// Canvas sized to its CSS box and the screen's pixel density; returns the drawing context.
+function fit(canvas) {
+  const r = canvas.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+  const w = Math.max(1, Math.round(r.width * dpr)), h = Math.max(1, Math.round(r.height * dpr));
+  if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  return {ctx, w: r.width, h: r.height};
+}
+
+/* ---------- theme ---------- */
+const temaBtn = document.getElementById("tema");
+function setTheme(t) {
+  if (t) document.documentElement.setAttribute("data-theme", t); else document.documentElement.removeAttribute("data-theme");
+}
+try { setTheme(localStorage.getItem("tema")); } catch (e) {}
+temaBtn.addEventListener("click", () => {
+  const dark = document.documentElement.getAttribute("data-theme") === "dark" ||
+    (!document.documentElement.getAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
+  const t = dark ? "light" : "dark";
+  setTheme(t);
+  try { localStorage.setItem("tema", t); } catch (e) {}
+  drawSSS();
+});
+
+/* ---------- scroll: progress bar, active link, reveal ---------- */
+const barra = document.getElementById("barra");
+const enlaces = [...document.querySelectorAll("nav a[href^='#']")];
+const secciones = enlaces.map(a => document.querySelector(a.getAttribute("href")));
+function onScroll() {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  barra.style.width = (max > 0 ? scrollY / max * 100 : 0) + "%";
+  let activa = 0;
+  secciones.forEach((s, i) => { if (s && s.getBoundingClientRect().top < 120) activa = i; });
+  enlaces.forEach((a, i) => a.classList.toggle("activo", i === activa && i > 0));
+}
+addEventListener("scroll", onScroll, {passive: true});
+onScroll();
+
+const observador = "IntersectionObserver" in window ? new IntersectionObserver(entradas => {
+  for (const e of entradas) if (e.isIntersecting) {
+    e.target.classList.add("visto");
+    e.target.querySelectorAll("[data-cifra]").forEach(contar);
+    observador.unobserve(e.target);
+  }
+}, {threshold: .15}) : null;
+document.querySelectorAll(".aparece").forEach(el => observador ? observador.observe(el) : el.classList.add("visto"));
+
+const miles = v => String(v).replace(/\B(?=(\d{3})+(?!\d))/g, ".");  // 1074 -> 1.074 (es-ES leaves 4 digits ungrouped)
+function contar(el) {  // counts a figure up from 0 to its real value
+  const fin = +el.dataset.cifra;
+  if (!MOTION) { el.textContent = miles(fin); return; }
+  const t0 = performance.now(), dur = 1400;
+  (function paso(t) {
+    const p = Math.min(1, (t - t0) / dur), v = Math.round(fin * (1 - Math.pow(1 - p, 3)));
+    el.textContent = miles(v);
+    if (p < 1) requestAnimationFrame(paso);
+  })(t0);
+}
+
+/* ---------- hero: zeros on the critical line ---------- */
+const lzc = document.getElementById("lienzo_ceros"), info = document.getElementById("info_cero");
+let raton = null, puntosCeros = [];
+function drawZeros(t) {
+  const {ctx, w, h} = fit(lzc);
+  ctx.clearRect(0, 0, w, h);
+  const pad = 26, x0 = w * 0.5, ink = css("--mute"), acc = css("--acc"), acc2 = css("--acc2"), line = css("--line");
+  const y = g => h - pad - (g - 10) / (80 - 10) * (h - 2 * pad);          // γ from 10 to 80 on the vertical axis
+  ctx.strokeStyle = line; ctx.lineWidth = 1;
+  for (let g = 10; g <= 80; g += 10) { ctx.beginPath(); ctx.moveTo(pad, y(g)); ctx.lineTo(w - pad, y(g)); ctx.stroke(); }
+  ctx.fillStyle = ink; ctx.font = "12px system-ui,sans-serif"; ctx.textAlign = "left";
+  for (let g = 20; g <= 80; g += 20) ctx.fillText("i·" + g, 4, y(g) - 3);
+  const grad = ctx.createLinearGradient(0, pad, 0, h - pad);               // the critical line Re(s) = 1/2
+  grad.addColorStop(0, acc2); grad.addColorStop(1, acc);
+  ctx.strokeStyle = grad; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(x0, pad / 2); ctx.lineTo(x0, h - pad / 2); ctx.stroke();
+  ctx.fillStyle = ink; ctx.textAlign = "center"; ctx.fillText("Re(s) = ½", x0, h - 6);
+  puntosCeros = [];
+  GAMMA.forEach((g, i) => {
+    const yy = y(g), fase = t / 1000 * 1.2 - i * 0.45, r = 4 + (MOTION ? 1.8 * Math.max(0, Math.sin(fase)) : 0);
+    const cerca = raton && Math.hypot(raton.x - x0, raton.y - yy) < 12;
+    ctx.beginPath(); ctx.arc(x0, yy, cerca ? 8 : r + 5, 0, 7);
+    ctx.fillStyle = css("--glow"); ctx.fill();
+    ctx.beginPath(); ctx.arc(x0, yy, cerca ? 5.5 : r, 0, 7);
+    ctx.fillStyle = i % 2 ? acc2 : acc; ctx.fill();
+    ctx.fillStyle = ink; ctx.textAlign = i % 2 ? "left" : "right";
+    if (w > 300) ctx.fillText("γ" + (i + 1), x0 + (i % 2 ? 14 : -14), yy + 4);
+    puntosCeros.push({x: x0, y: yy, i});
+  });
+  const hit = raton && puntosCeros.find(p => Math.hypot(raton.x - p.x, raton.y - p.y) < 12);
+  if (hit) {
+    info.textContent = `ρ${hit.i + 1} = ½ + i·${fmt(GAMMA[hit.i], 8)}  →  f${hit.i + 1} = ${fmt(FREQ[hit.i], 1)} Hz`;
+    info.style.left = Math.min(w - info.offsetWidth - 6, hit.x + 14) + "px";
+    info.style.top = (hit.y - 30) + "px";
+    info.style.opacity = 1;
+  } else info.style.opacity = 0;
+}
+lzc.addEventListener("mousemove", e => { const r = lzc.getBoundingClientRect(); raton = {x: e.clientX - r.left, y: e.clientY - r.top}; });
+lzc.addEventListener("mouseleave", () => { raton = null; });
+
+/* ---------- radio: Riemann mask with envelope followers ---------- */
+const lrd = document.getElementById("lienzo_radio"), lecturaRadio = document.getElementById("lectura_radio");
+const nRadio = document.getElementById("n_radio"), fRadio = document.getElementById("f_radio");
+const G = new Array(20).fill(0), E = new Array(20).fill(0), finE = new Array(20).fill(0);
+const BLOQUE = 2048 / 44100;                     // seconds per engine block (~46 ms)
+let acumulado = 0, pausada = !MOTION, ultimo = performance.now(), proxNota = 0, reloj = 0;
+function actualizarLecturaRadio() {
+  const n = +nRadio.value, f = F_MIN * Math.pow(F_MAX / F_MIN, +fRadio.value / 1000);
+  let m = 0.6;
+  for (let i = 0; i < G.length; i++) {
+    const d = (f - FREQ[i]) / 12;
+    m += G[i] * Math.exp(-0.5 * d * d);
+  }
+  document.getElementById("n_radio_val").textContent = "n = " + n;
+  document.getElementById("f_radio_val").textContent = fmt(f, 1) + " Hz";
+  document.getElementById("radio_n_result").textContent = n;
+  document.getElementById("radio_fn_result").textContent = fmt(FREQ[n - 1], 1) + " Hz";
+  document.getElementById("radio_m_result").textContent = fmt(m, 6);
+  document.getElementById("lectura_radio_seleccion").textContent = `En f = ${fmt(f, 1)} Hz, M(f,t) = ${fmt(m, 6)} con las ganancias activas de la simulación.`;
+}
+nRadio.addEventListener("input", actualizarLecturaRadio);
+fRadio.addEventListener("input", actualizarLecturaRadio);
+document.getElementById("pausa_radio").addEventListener("click", ev => {
+  pausada = !pausada; ev.currentTarget.setAttribute("aria-pressed", pausada); ev.currentTarget.textContent = pausada ? "Seguir" : "Pausa";
+});
+if (pausada) { const b = document.getElementById("pausa_radio"); b.textContent = "Seguir"; b.setAttribute("aria-pressed", "true"); }
+function testSignal() {                           // random test "music": bursts of energy, low bands more often
+  if (reloj >= proxNota) {
+    const notas = 1 + Math.floor(Math.random() * 3);
+    for (let k = 0; k < notas; k++) {
+      const n = Math.min(19, Math.floor(Math.pow(Math.random(), 1.6) * 20));
+      E[n] = 0.25 + Math.random() * 0.5;          // E_n of the burst, so T_n = clip(2E_n, 0, 1.5)
+      finE[n] = reloj + 0.2 + Math.random() * 0.6;
+    }
+    proxNota = reloj + 0.3 + Math.random() * 0.9;
+  }
+  for (let n = 0; n < 20; n++) if (reloj > finE[n]) E[n] = 0;
+}
+function engineBlock() {                          // one block of the engine's envelope followers
+  testSignal();
+  for (let n = 0; n < 20; n++) {
+    const T = Math.min(1.5, Math.max(0, 2 * E[n]));
+    const c = T > G[n] ? 0.05 : 0.002;
+    G[n] += c * (T - G[n]);
+  }
+  reloj += BLOQUE;
+}
+function drawRadio() {
+  const {ctx, w, h} = fit(lrd);
+  ctx.clearRect(0, 0, w, h);
+  const pl = 36, pr = 12, pt = 14, pb = 28, ink = css("--mute"), line = css("--line"), acc = css("--acc"), acc2 = css("--acc2");
+  const X = f => pl + Math.log(f / 40) / Math.log(18000 / 40) * (w - pl - pr);   // log frequency axis
+  const Y = m => h - pb - m / 3 * (h - pt - pb);                                    // mask value 0..3
+  ctx.font = "11px system-ui,sans-serif"; ctx.fillStyle = ink; ctx.strokeStyle = line; ctx.lineWidth = 1;
+  [50, 100, 200, 500, 1000, 2000, 5000, 10000, 16000].forEach(f => {
+    ctx.beginPath(); ctx.moveTo(X(f), pt); ctx.lineTo(X(f), h - pb); ctx.stroke();
+    ctx.textAlign = "center"; ctx.fillText(f >= 1000 ? (f / 1000) + "k" : f, X(f), h - pb + 14);
+  });
+  ctx.textAlign = "right";
+  [0.6, 1, 2, 3].forEach(m => ctx.fillText(fmt(m, m === 0.6 ? 1 : 0), pl - 5, Y(m) + 4));
+  ctx.textAlign = "left"; ctx.fillText("Hz", w - pr - 14, h - 4);
+  ctx.setLineDash([4, 4]); ctx.strokeStyle = ink;                                   // base level 0.6 outside the modes
+  ctx.beginPath(); ctx.moveTo(pl, Y(0.6)); ctx.lineTo(w - pr, Y(0.6)); ctx.stroke(); ctx.setLineDash([]);
+  // M(f) drawn with σ = 12 Hz; at high frequencies the modes are narrower than a pixel, so each peak is also marked
+  ctx.beginPath();
+  for (let px = pl; px <= w - pr; px += 1) {
+    const f = 40 * Math.pow(18000 / 40, (px - pl) / (w - pl - pr));
+    let m = 0.6;
+    for (let n = 0; n < 20; n++) { const d = (f - FREQ[n]) / 12; if (Math.abs(d) < 6) m += G[n] * Math.exp(-0.5 * d * d); }
+    m = Math.min(3, Math.max(0.1, m));
+    px === pl ? ctx.moveTo(px, Y(m)) : ctx.lineTo(px, Y(m));
+  }
+  ctx.strokeStyle = acc2; ctx.lineWidth = 1.5; ctx.stroke();
+  let top = 0;
+  for (let n = 0; n < 20; n++) {
+    const m = Math.min(3, 0.6 + G[n]), x = X(FREQ[n]);
+    const g = ctx.createLinearGradient(0, Y(m), 0, Y(0.6));
+    g.addColorStop(0, acc); g.addColorStop(1, "transparent");
+    ctx.fillStyle = g; ctx.fillRect(x - 3, Y(m), 6, Y(0.6) - Y(m));
+    ctx.beginPath(); ctx.arc(x, Y(m), 3.5, 0, 7); ctx.fillStyle = acc; ctx.fill();
+    if (G[n] > G[top]) top = n;
+  }
+  lecturaRadio.innerHTML = `modo más encendido: <b>n = ${top + 1}</b>, f = ${fmt(FREQ[top], 1)} Hz, G = ${fmt(G[top], 3)}, M = ×${fmt(Math.min(3, 0.6 + G[top]), 2)}`;
+  actualizarLecturaRadio();
+}
+
+/* ---------- SSS: interactive plot ---------- */
+function besselJ(n, x) {                         // power series; exact enough for |x| <= 20
+  let sum = 0, term = Math.pow(x / 2, n);
+  for (let k = 1; k <= n; k++) term /= k;
+  for (let m = 0; m < 80; m++) {
+    sum += term;
+    term *= -(x * x / 4) / ((m + 1) * (m + 1 + n));
+    if (Math.abs(term) < 1e-17 * Math.abs(sum)) break;
+  }
+  return sum;
+}
+const K = 1.832827, EXP_S1 = Math.exp(-1.9041);
+function sss(a, rho, sigma) {
+  const s1 = besselJ(1, a * rho) * EXP_S1;
+  const s2 = 2 * a * sigma < 1 ? 1 / Math.sqrt(1 - 2 * a * sigma) : 100;
+  const t = 1 - a, s3 = (K / 2) * (besselJ(0, K * t) - besselJ(2, K * t));
+  return Math.max(0, a * (s1 + s2) * Math.abs(s3));
+}
+function syncPoint(rho, sigma) {                 // first sign change of SSS(a) - a, refined to 1e-12
+  const d = a => sss(a, rho, sigma) - a;
+  let prev = 1 / 400, dp = d(prev);
+  for (let i = 2; i <= 400; i++) {
+    const a = i / 400, da = d(a);
+    if (dp === 0) return prev;
+    if (dp * da < 0) {
+      let lo = prev, hi = a, dlo = dp;
+      while (hi - lo > 1e-12) { const mid = (lo + hi) / 2, dm = d(mid); if (dlo * dm <= 0) hi = mid; else { lo = mid; dlo = dm; } }
+      return (lo + hi) / 2;
+    }
+    prev = a; dp = da;
+  }
+  return null;
+}
+const lss = document.getElementById("lienzo_sss"), nIn = document.getElementById("n_sss"), sIn = document.getElementById("s_sss"), alphaIn = document.getElementById("alpha_sss");
+const lecturaSSS = document.getElementById("lectura_sss");
+let ratonSSS = null, curvaVieja = null, curvaNueva = null, mezcla = 1, alphaSync = null;
+function curve(rho, sigma) { const pts = []; for (let i = 0; i <= 400; i++) { const a = i / 400; pts.push(sss(a, rho, sigma)); } return pts; }
+function params() { const n = +nIn.value, sigma = +sIn.value; return {n, sigma, rho: 10 * n / 20}; }
+function actualizarResultadoSSS() {
+  const {rho, sigma} = params(), a = +alphaIn.value, value = sss(a, rho, sigma);
+  document.getElementById("alpha_val").textContent = fmt(a, 3);
+  document.getElementById("sss_alpha_result").textContent = fmt(value, 6);
+  document.getElementById("sss_delta_result").textContent = fmt(value - a, 6);
+  document.getElementById("sss_sync_result").textContent = alphaSync === null ? "sin cruce" : fmt(alphaSync, 6);
+}
+function recalc() {
+  const {n, sigma, rho} = params();
+  document.getElementById("n_val").textContent = n;
+  document.getElementById("s_val").textContent = fmt(sigma, 2);
+  curvaVieja = curvaNueva ? curvaNueva.map((v, i) => curvaVieja && mezcla < 1 ? curvaVieja[i] + (v - curvaVieja[i]) * mezcla : v) : null;
+  curvaNueva = curve(rho, sigma);
+  alphaSync = syncPoint(rho, sigma);
+  mezcla = curvaVieja && MOTION ? 0 : 1;
+  actualizarResultadoSSS();
+  drawSSS();
+}
+function drawSSS() {
+  if (!curvaNueva) return;
+  const {sigma, rho} = params();
+  const {ctx, w, h} = fit(lss);
+  ctx.clearRect(0, 0, w, h);
+  const pl = 40, pr = 14, pt = 14, pb = 28, YMAX = 1.6, ink = css("--mute"), line = css("--line"), acc = css("--acc"), acc2 = css("--acc2");
+  const X = a => pl + a * (w - pl - pr), Y = v => h - pb - Math.min(v, YMAX * 1.05) / YMAX * (h - pt - pb);
+  ctx.font = "11px system-ui,sans-serif"; ctx.strokeStyle = line; ctx.fillStyle = ink; ctx.lineWidth = 1;
+  for (let a = 0; a <= 1.0001; a += 0.2) { ctx.beginPath(); ctx.moveTo(X(a), pt); ctx.lineTo(X(a), h - pb); ctx.stroke(); ctx.textAlign = "center"; ctx.fillText(fmt(a, 1), X(a), h - pb + 14); }
+  for (let v = 0; v <= YMAX + 1e-9; v += 0.4) { ctx.beginPath(); ctx.moveTo(pl, Y(v)); ctx.lineTo(w - pr, Y(v)); ctx.stroke(); ctx.textAlign = "right"; ctx.fillText(fmt(v, 1), pl - 5, Y(v) + 4); }
+  ctx.textAlign = "left"; ctx.fillText("α", w - pr - 10, h - 4);
+  const ah = 1 / (2 * sigma);                                                   // Schwarzschild-like horizon
+  if (ah < 1) {
+    ctx.fillStyle = css("--glow"); ctx.fillRect(X(ah), pt, X(1) - X(ah), h - pt - pb);
+    ctx.setLineDash([5, 4]); ctx.strokeStyle = acc; ctx.beginPath(); ctx.moveTo(X(ah), pt); ctx.lineTo(X(ah), h - pb); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = acc; ctx.textAlign = "left"; ctx.fillText("horizonte α_h = " + fmt(ah, 3) + " (S₂ = 100)", Math.min(X(ah) + 4, w - 190), pt + 12);
+  }
+  ctx.setLineDash([3, 4]); ctx.strokeStyle = ink;                               // the line SSS = α
+  ctx.beginPath(); ctx.moveTo(X(0), Y(0)); ctx.lineTo(X(1), Y(1)); ctx.stroke(); ctx.setLineDash([]);
+  ctx.fillStyle = ink; ctx.fillText("SSS = α", X(0.86), Y(0.86) + 16);
+  const pts = curvaNueva.map((v, i) => curvaVieja && mezcla < 1 ? curvaVieja[i] + (v - curvaVieja[i]) * mezcla : v);
+  const Yc = v => h - pb - Math.min(v, YMAX * 3) / YMAX * (h - pt - pb);      // real height; the plot area clips it
+  ctx.save(); ctx.beginPath(); ctx.rect(pl, pt, w - pl - pr, h - pt - pb); ctx.clip();
+  ctx.beginPath();
+  pts.forEach((v, i) => { const x = X(i / 400), y = Yc(v); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); });
+  ctx.strokeStyle = acc2; ctx.lineWidth = 2.5; ctx.stroke(); ctx.restore();
+  const sale = pts.findIndex(v => v > YMAX);                                   // where the curve leaves the plot
+  if (sale > 0) { ctx.fillStyle = acc2; ctx.textAlign = "center"; ctx.fillText("↑ " + (pts[400] >= 100 ? "hasta 100+" : "sigue subiendo"), Math.min(X(sale / 400), w - pr - 50), pt + 26); }
+  const aSel = +alphaIn.value, vSel = sss(aSel, rho, sigma);
+  ctx.setLineDash([2, 4]); ctx.strokeStyle = acc2; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(X(aSel), pt); ctx.lineTo(X(aSel), h - pb); ctx.stroke(); ctx.setLineDash([]);
+  ctx.beginPath(); ctx.arc(X(aSel), Y(vSel), 4.5, 0, 7); ctx.fillStyle = acc2; ctx.fill();
+  const as = alphaSync;
+  let texto = `ρ = ${fmt(rho, 1)} · α* = ` + (as === null ? "—" : `<b>${fmt(as, 6)}</b>`);
+  if (as !== null) {
+    ctx.beginPath(); ctx.arc(X(as), Y(as), 6, 0, 7); ctx.fillStyle = acc; ctx.fill();
+    ctx.fillStyle = css("--ink"); ctx.textAlign = "right"; ctx.fillText("α*", X(as) - 9, Y(as) - 7);
+  }
+  if (ratonSSS && ratonSSS.x >= pl && ratonSSS.x <= w - pr) {
+    const a = (ratonSSS.x - pl) / (w - pl - pr), v = sss(a, rho, sigma);
+    ctx.strokeStyle = ink; ctx.beginPath(); ctx.moveTo(X(a), pt); ctx.lineTo(X(a), h - pb); ctx.stroke();
+    ctx.beginPath(); ctx.arc(X(a), Y(v), 4, 0, 7); ctx.fillStyle = acc2; ctx.fill();
+    texto += ` · en α = ${fmt(a, 3)}: SSS = <b>${v >= 100 ? fmt(v, 1) : fmt(v, 4)}</b>`;
+  }
+  lecturaSSS.innerHTML = texto;
+}
+nIn.addEventListener("input", recalc);
+sIn.addEventListener("input", recalc);
+alphaIn.addEventListener("input", () => { actualizarResultadoSSS(); drawSSS(); });
+lss.addEventListener("mousemove", e => { const r = lss.getBoundingClientRect(); ratonSSS = {x: e.clientX - r.left}; drawSSS(); });
+lss.addEventListener("mouseleave", () => { ratonSSS = null; drawSSS(); });
+lss.addEventListener("touchmove", e => { const r = lss.getBoundingClientRect(); ratonSSS = {x: e.touches[0].clientX - r.left}; drawSSS(); }, {passive: true});
+
+/* ---------- main animation loop ---------- */
+function frame(t) {
+  const dt = Math.min(0.25, (t - ultimo) / 1000); ultimo = t;
+  if (!pausada) { acumulado += dt; while (acumulado >= BLOQUE) { engineBlock(); acumulado -= BLOQUE; } }
+  drawZeros(t);
+  drawRadio();
+  if (mezcla < 1) { mezcla = Math.min(1, mezcla + dt * 4); drawSSS(); }
+  if (MOTION) requestAnimationFrame(frame);
+}
+for (let i = 0; i < 200; i++) engineBlock();     // start with the followers already moving
+recalc();
+requestAnimationFrame(frame);
+addEventListener("resize", () => { drawSSS(); if (!MOTION) frame(performance.now()); });
+
+/* ---------- live repositories from the GitHub API ---------- */
+const COLORES = {Python: "#3572A5", Rust: "#dea584", C: "#555555", "C++": "#f34b7d", Shell: "#89e051", HTML: "#e34c26", JavaScript: "#f1e05a", Go: "#00ADD8", Ruby: "#701516"};
+const rtf = new Intl.RelativeTimeFormat("es", {numeric: "auto"});
+function hace(fecha) {
+  const s = (new Date(fecha) - Date.now()) / 1000;
+  for (const [u, seg] of [["year", 31536000], ["month", 2592000], ["day", 86400], ["hour", 3600], ["minute", 60]])
+    if (Math.abs(s) >= seg) return rtf.format(Math.round(s / seg), u);
+  return "ahora mismo";
+}
+function el(tag, cls, txt) { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+async function cargarRepos() {
+  const caja = document.getElementById("repos"), estado = document.getElementById("estado_github");
+  try {
+    const r = await fetch(`https://api.github.com/users/${USER}/repos?sort=pushed&per_page=50`, {headers: {Accept: "application/vnd.github+json"}});
+    if (!r.ok) throw new Error("GitHub respondió " + r.status);
+    const repos = (await r.json()).filter(x => !x.fork);
+    caja.textContent = "";
+    for (const x of repos) {
+      const a = el("a", "repo aparece visto"); a.href = x.html_url;
+      a.append(el("b", null, x.name), el("span", null, x.description || "Sin descripción."));
+      const d = el("div", "datos");
+      if (x.language) { const l = el("span"); const p = el("i", "punto"); p.style.background = COLORES[x.language] || "#888"; l.append(p, x.language); d.append(l); }
+      d.append(el("span", null, "★ " + x.stargazers_count), el("span", null, "actualizado " + hace(x.pushed_at)));
+      a.append(d); caja.append(a);
+    }
+    estado.textContent = `${repos.length} repositorios públicos, leídos ahora mismo de la API de GitHub.`;
+    if (repos.length) document.getElementById("pie_github").textContent = "último cambio en GitHub " + hace(repos[0].pushed_at);
+  } catch (e) {
+    caja.textContent = "";
+    estado.innerHTML = "";
+    estado.append("No se pudo leer GitHub ahora (" + e.message + "). Los repositorios están en ");
+    const a = el("a", null, "github.com/" + USER); a.href = "https://github.com/" + USER; estado.append(a, ".");
+  }
+}
+cargarRepos();
+</script>
 </body>
 </html>
